@@ -135,6 +135,12 @@ export default function Hero() {
            border-radius: 1rem;
            border: 1px solid rgba(255,255,255,0.1);
         }
+        .metallic-text {
+           background: linear-gradient(180deg, #ffffff 0%, #e4e4e7 40%, #a1a1aa 48%, #d4d4d8 52%, #52525b 100%);
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.8)) drop-shadow(0px -1px 1px rgba(255,255,255,0.4));
+        }
       `}</style>
 
       <section ref={containerRef} id="hero-section" className="hero-scroll-container">
@@ -176,7 +182,7 @@ export default function Hero() {
                 className="hero-text-overlay flex flex-col items-center"
               >
                 <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-bold text-white tracking-tight leading-[1.05] mb-8 drop-shadow-2xl">
-                  Invoice Finance Brokers
+                  Invoice <span className="metallic-text">Finance</span> Brokers
                 </h1>
                 <p className="text-xl md:text-3xl text-gray-200 leading-relaxed mb-12 max-w-3xl font-medium drop-shadow-xl">
                   You're one click away from unlocking finance.
