@@ -143,11 +143,11 @@ export default function Hero() {
             {/* Layer 1: Construction & Logistics */}
             <div className="hero-layer opacity-0">
               <div className="hero-img-wrap mt-24">
-                <img src="https://images.unsplash.com/photo-1541888086225-ee5a7cc7034c?auto=format&fit=crop&q=80&w=800" alt="Construction Invoice Finance" loading="eager" />
+                <img src="/construction.jpg" alt="Construction Invoice Finance" loading="eager" />
                 <p>Construction</p>
               </div>
               <div className="hero-img-wrap mb-24">
-                <img src="https://images.unsplash.com/photo-1586528116311-ad8ed7fc51f7?auto=format&fit=crop&q=80&w=800" alt="Logistics Invoice Finance" loading="eager" />
+                <img src="/logistics.jpg" alt="Logistics Invoice Finance" loading="eager" />
                 <p>Logistics</p>
               </div>
             </div>
@@ -155,11 +155,11 @@ export default function Hero() {
             {/* Layer 2: Manufacturing & Recruitment */}
             <div className="hero-layer opacity-0">
               <div className="hero-img-wrap mb-32 hidden md:flex">
-                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" alt="Manufacturing Invoice Finance" loading="eager" />
+                <img src="/manufacturing.jpg" alt="Manufacturing Invoice Finance" loading="eager" />
                 <p>Manufacturing</p>
               </div>
               <div className="hero-img-wrap mt-32">
-                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800" alt="Recruitment Invoice Finance" loading="eager" />
+                <img src="/recruitment.jpg" alt="Recruitment Invoice Finance" loading="eager" />
                 <p>Recruitment</p>
               </div>
             </div>
@@ -172,7 +172,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="hero-text-overlay flex flex-col items-center p-8 rounded-3xl bg-black/30 backdrop-blur-sm border border-white/5"
+                className="hero-text-overlay flex flex-col items-center"
               >
                 <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-bold text-white tracking-tight leading-[1.05] mb-8 drop-shadow-2xl">
                   Invoice Finance Brokers
