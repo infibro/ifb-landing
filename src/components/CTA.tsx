@@ -17,18 +17,7 @@ export default function CTA() {
                 If your business needs faster access to cash tied up in unpaid invoices, submit an enquiry and we will introduce you to suitable invoice finance providers.
               </p>
 
-              <div className="space-y-6">
 
-                <div className="flex items-center gap-4 text-gray-300">
-                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Email support</p>
-                    <p className="font-semibold">funding@invoicefinancebrokers.co.uk</p>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-sm">

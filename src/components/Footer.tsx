@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -11,9 +12,12 @@ export default function Footer() {
             <p className="text-gray-400 text-sm max-w-sm text-center md:text-left">
               Connecting businesses with independent finance brokers and lenders.
             </p>
-            <a href="mailto:funding@invoicefinancebrokers.co.uk" className="text-blue-400 hover:text-blue-300 mt-4 transition-colors">
-              funding@invoicefinancebrokers.co.uk
-            </a>
+            <div className="flex items-center gap-2 mt-4">
+              <Mail className="w-4 h-4 text-gray-400" />
+              <a href="mailto:funding@invoicefinancebrokers.co.uk" className="text-blue-400 hover:text-blue-300 transition-colors">
+                funding@invoicefinancebrokers.co.uk
+              </a>
+            </div>
           </div>
 
           <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-center md:text-left text-sm text-gray-400">
