@@ -25,7 +25,7 @@ export default function Hero() {
       // opacity animation
       scroll(
         animate(layer, { opacity: [0, 1, 0] }, {
-          offset: [0, 0.4, 1],
+          offset: [0, 0.2, 1],
           // using a slightly different curve for fade out
           easing: cubicBezier(0.42, 0, 0.58, 1)
         }),
@@ -34,8 +34,8 @@ export default function Hero() {
 
       // scale animation
       scroll(
-        animate(layer, { scale: [1, 1, 2], y: [100, 100, 0] }, {
-          offset: [0, 0.2, 1],
+        animate(layer, { scale: [1, 2.5], y: [100, 0] }, {
+          offset: [0, 1],
           easing: scaleEasings[idx]
         }),
         { target: firstSection, offset: ['start start', endOffset] }
@@ -59,7 +59,7 @@ export default function Hero() {
     <>
       <style>{`
         .hero-scroll-container {
-           min-height: 200vh;
+           min-height: 400vh;
            background: #000;
            position: relative;
         }
@@ -136,9 +136,7 @@ export default function Hero() {
            border: 1px solid rgba(255,255,255,0.1);
         }
         .metallic-text {
-           background: linear-gradient(180deg, #ffffff 0%, #e4e4e7 40%, #a1a1aa 48%, #d4d4d8 52%, #52525b 100%);
-           -webkit-background-clip: text;
-           -webkit-text-fill-color: transparent;
+           color: #e4e4e7;
            filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.8)) drop-shadow(0px -1px 1px rgba(255,255,255,0.4));
         }
       `}</style>
