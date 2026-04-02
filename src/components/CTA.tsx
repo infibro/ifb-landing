@@ -5,7 +5,7 @@ export default function CTA() {
   return (
     <section id="enquiry" className="py-24 bg-black relative overflow-hidden">
       <div className="absolute inset-0 bg-blue-600/5 blur-[120px] rounded-full -translate-y-1/2" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="bg-gradient-to-br from-zinc-900 to-black border border-white/10 rounded-[2.5rem] p-8 md:p-16">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -16,24 +16,16 @@ export default function CTA() {
               <p className="text-xl text-gray-400 mb-12 leading-relaxed">
                 If your business needs faster access to cash tied up in unpaid invoices, submit an enquiry and we will introduce you to suitable invoice finance providers.
               </p>
-              
+
               <div className="space-y-6">
-                <div className="flex items-center gap-4 text-gray-300">
-                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Call us directly</p>
-                    <p className="font-semibold">0800 123 4567</p>
-                  </div>
-                </div>
+
                 <div className="flex items-center gap-4 text-gray-300">
                   <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Email support</p>
-                    <p className="font-semibold">hello@invoicefinancebrokers.co.uk</p>
+                    <p className="font-semibold">funding@invoicefinancebrokers.co.uk</p>
                   </div>
                 </div>
               </div>

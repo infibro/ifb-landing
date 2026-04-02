@@ -11,8 +11,8 @@ export default function Footer() {
             <p className="text-gray-400 text-sm max-w-sm text-center md:text-left">
               Connecting businesses with independent finance brokers and lenders.
             </p>
-            <a href="mailto:devopps@invoicefinancebrokers.co.uk" className="text-blue-400 hover:text-blue-300 mt-4 transition-colors">
-              devopps@invoicefinancebrokers.co.uk
+            <a href="mailto:funding@invoicefinancebrokers.co.uk" className="text-blue-400 hover:text-blue-300 mt-4 transition-colors">
+              funding@invoicefinancebrokers.co.uk
             </a>
           </div>
 
