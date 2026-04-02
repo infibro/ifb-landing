@@ -24,9 +24,8 @@ export default function Hero() {
 
       // opacity animation
       scroll(
-        animate(layer, { opacity: [0, 1, 0] }, {
-          offset: [0, 0.2, 1],
-          // using a slightly different curve for fade out
+        animate(layer, { opacity: [0, 1, 1, 0] }, {
+          offset: [0, 0.15, 0.8, 1],
           easing: cubicBezier(0.42, 0, 0.58, 1)
         }),
         { target: firstSection, offset: ['start start', endOffset] }
@@ -59,7 +58,7 @@ export default function Hero() {
     <>
       <style>{`
         .hero-scroll-container {
-           min-height: 400vh;
+           min-height: 200vh;
            background: #000;
            position: relative;
         }
