@@ -108,7 +108,7 @@ export default function PrivacyPolicy() {
                     <section>
                         <h2 className="text-2xl font-semibold text-white mb-4">10. Contact</h2>
                         <p>For questions relating to this policy or data protection matters:</p>
-                        <p>Email: <a href="mailto:devopps@invoicefinancebrokers.co.uk" className="text-blue-400 hover:text-blue-300">devopps@invoicefinancebrokers.co.uk</a></p>
+                        <p>Email: <a href="mailto:funding@invoicefinancebrokers.co.uk" className="text-blue-400 hover:text-blue-300">funding@invoicefinancebrokers.co.uk</a></p>
                     </section>
                 </div>
             </div>
