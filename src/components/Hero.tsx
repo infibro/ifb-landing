@@ -40,6 +40,18 @@ export default function Hero() {
         { target: firstSection, offset: ['start start', endOffset] }
       );
     });
+
+    // Fade out text as we scroll
+    const textOverlay = firstSection.querySelector('.hero-text-overlay');
+    if (textOverlay) {
+      scroll(
+        animate(textOverlay, { opacity: [1, 0], scale: [1, 0.9], y: [0, -50] }, {
+          offset: [0, 1],
+          easing: cubicBezier(0.42, 0, 1, 1)
+        }),
+        { target: firstSection, offset: ['start start', '0.5 end'] } // fades out within the first half of the scroll
+      );
+    }
   }, []);
 
   return (
@@ -160,7 +172,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="flex flex-col items-center p-8 rounded-3xl bg-black/30 backdrop-blur-sm border border-white/5"
+                className="hero-text-overlay flex flex-col items-center p-8 rounded-3xl bg-black/30 backdrop-blur-sm border border-white/5"
               >
                 <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-bold text-white tracking-tight leading-[1.05] mb-8 drop-shadow-2xl">
                   Invoice Finance Brokers
