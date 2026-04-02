@@ -1,48 +1,41 @@
+import { Link } from 'react-router-dom';
+
 export default function Footer() {
   return (
     <footer className="bg-black border-t border-white/10 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
-          <div className="col-span-2">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <div className="w-4 h-4 bg-black rotate-45" />
-              </div>
-              <span className="text-white font-bold text-xl tracking-tight">Invoice Finance Brokers</span>
-            </div>
-            <p className="text-gray-500 max-w-sm leading-relaxed">
-              Invoice Finance Brokers introduces UK businesses to specialist lenders and brokers who can help turn outstanding invoices into fast, flexible funding.
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
+
+          <div className="flex flex-col items-center md:items-start">
+            <span className="text-white font-bold text-xl tracking-tighter mb-4">Invoice Finance Brokers</span>
+            <p className="text-gray-400 text-sm max-w-sm text-center md:text-left">
+              Connecting businesses with independent finance brokers and lenders.
             </p>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-bold mb-6">Quick Links</h4>
-            <ul className="space-y-4 text-gray-500">
-              <li><a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a></li>
-              <li><a href="#types" className="hover:text-white transition-colors">Types of Finance</a></li>
-              <li><a href="#benefits" className="hover:text-white transition-colors">Benefits</a></li>
-              <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
-            </ul>
+            <a href="mailto:devopps@invoicefinancebrokers.co.uk" className="text-blue-400 hover:text-blue-300 mt-4 transition-colors">
+              devopps@invoicefinancebrokers.co.uk
+            </a>
           </div>
 
-          <div>
-            <h4 className="text-white font-bold mb-6">Legal</h4>
-            <ul className="space-y-4 text-gray-500">
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
-            </ul>
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-center md:text-left text-sm text-gray-400">
+            <div className="flex flex-col space-y-3">
+              <h4 className="text-white font-semibold mb-2">Legal</h4>
+              <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/terms-and-conditions" className="hover:text-white transition-colors">Terms and Conditions</Link>
+              <Link to="/legal-disclosures" className="hover:text-white transition-colors">Legal Disclosures</Link>
+            </div>
+
+            <div className="flex flex-col space-y-3">
+              <h4 className="text-white font-semibold mb-2">Platform</h4>
+              <Link to="/" className="hover:text-white transition-colors">Home</Link>
+              <a href="/#how-it-works" className="hover:text-white transition-colors">How it works</a>
+              <a href="/#faq" className="hover:text-white transition-colors">FAQ</a>
+            </div>
           </div>
+
         </div>
-        
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600 text-sm">
-            © {new Date().getFullYear()} Invoice Finance Brokers. All rights reserved.
-          </p>
-          <div className="flex space-x-6">
-            <a href="#" className="text-gray-600 hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="text-gray-600 hover:text-white transition-colors">Twitter</a>
-          </div>
+
+        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+          <p>&copy; {new Date().getFullYear()} Invoice Finance Brokers. All rights reserved.</p>
         </div>
       </div>
     </footer>

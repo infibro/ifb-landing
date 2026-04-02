@@ -1,63 +1,26 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import HowItWorks from "./components/HowItWorks";
-import TypesAndSectors from "./components/TypesAndSectors";
-import FAQ from "./components/FAQ";
-import CTA from "./components/CTA";
 import Footer from "./components/Footer";
-import { motion } from "motion/react";
+import Home from "./pages/Home";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import LegalDisclosures from "./pages/LegalDisclosures";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans selection:bg-white selection:text-black">
-      <Navbar />
-      <main>
-        <Hero />
-        
-        {/* Introduction Section (Semantic SEO) */}
-        <section className="py-20 bg-black border-y border-white/5">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">What Is Invoice Finance?</h2>
-              <p className="text-xl text-gray-400 leading-relaxed">
-                Invoice finance is a form of business funding that allows companies to raise money against unpaid sales invoices. Instead of waiting for customers to pay, a lender advances most of the invoice value upfront, helping the business maintain cash flow and fund growth.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        <HowItWorks />
-        <TypesAndSectors />
-        
-        {/* Benefits Section */}
-        <section id="benefits" className="py-24 bg-black">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold tracking-tight">Benefits of Invoice Finance</h2>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { title: "Access cash faster", desc: "Turn unpaid invoices into usable cash without waiting for long payment terms to expire." },
-                { title: "Support payroll", desc: "Better cash flow can make it easier to cover operating costs and maintain stability." },
-                { title: "Take on larger contracts", desc: "Businesses may be able to accept more work when funding is not held back by customer payment delays." }
-              ].map((benefit, i) => (
-                <div key={i} className="p-8 rounded-2xl bg-white/5 border border-white/10">
-                  <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
-                  <p className="text-gray-400 leading-relaxed">{benefit.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <FAQ />
-        <CTA />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-white selection:text-black flex flex-col">
+        <Navbar />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/legal-disclosures" element={<LegalDisclosures />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
