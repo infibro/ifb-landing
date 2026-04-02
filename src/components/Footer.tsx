@@ -31,7 +31,7 @@ export default function Footer() {
             <div className="flex flex-col space-y-3">
               <h4 className="text-white font-semibold mb-2">Platform</h4>
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
-              <a href="/#how-it-works" className="hover:text-white transition-colors">How it works</a>
+              <Link to="/how-it-works" className="hover:text-white transition-colors">How it works</Link>
               <a href="/#faq" className="hover:text-white transition-colors">FAQ</a>
             </div>
           </div>

@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import LegalDisclosures from "./pages/LegalDisclosures";
+import HowItWorksPage from "./pages/HowItWorksPage";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="/legal-disclosures" element={<LegalDisclosures />} />
+            <Route path="/how-it-works" element={<HowItWorksPage />} />
           </Routes>
         </div>
         <Footer />
