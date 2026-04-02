@@ -24,16 +24,17 @@ export default function Hero() {
 
       // opacity animation
       scroll(
-        animate(layer, { opacity: [0, 0, 1] }, {
-          offset: [0, 0.3, 1],
-          easing: cubicBezier(0.61, 1, 0.88, 1)
+        animate(layer, { opacity: [0, 1, 0] }, {
+          offset: [0, 0.4, 1],
+          // using a slightly different curve for fade out
+          easing: cubicBezier(0.42, 0, 0.58, 1)
         }),
         { target: firstSection, offset: ['start start', endOffset] }
       );
 
       // scale animation
       scroll(
-        animate(layer, { scale: [0.6, 0.6, 1], y: [100, 100, 0] }, {
+        animate(layer, { scale: [1, 1, 2], y: [100, 100, 0] }, {
           offset: [0, 0.2, 1],
           easing: scaleEasings[idx]
         }),
@@ -141,7 +142,7 @@ export default function Hero() {
 
           <div className="hero-scroll-grid pointer-events-none">
             {/* Layer 1: Construction & Logistics */}
-            <div className="hero-layer opacity-0">
+            <div className="hero-layer">
               <div className="hero-img-wrap mt-24">
                 <img src="/construction.jpg" alt="Construction Invoice Finance" loading="eager" />
                 <p>Construction</p>
@@ -153,7 +154,7 @@ export default function Hero() {
             </div>
 
             {/* Layer 2: Manufacturing & Recruitment */}
-            <div className="hero-layer opacity-0">
+            <div className="hero-layer">
               <div className="hero-img-wrap mb-32 hidden md:flex">
                 <img src="/manufacturing.jpg" alt="Manufacturing Invoice Finance" loading="eager" />
                 <p>Manufacturing</p>
