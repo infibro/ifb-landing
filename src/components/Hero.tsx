@@ -38,62 +38,29 @@ export default function Hero() {
       </div>
 
       {/* --- FOREGROUND CONTENT --- */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-12">
+        <div className="flex flex-col items-center justify-center text-center">
 
-          {/* Left: Typography */}
+          {/* Typography */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-left"
+            className="flex flex-col items-center"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-white tracking-tight leading-[1.05] mb-6">
-              This is business banking
+            <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-bold text-white tracking-tight leading-[1.05] mb-8 drop-shadow-lg">
+              Invoice Finance Brokers
             </h1>
-            <p className="text-lg md:text-xl text-[#A3A3A3] leading-relaxed mb-10 max-w-lg font-medium">
-              Take your finances further with the account designed for efficiency, and built for business.
+            <p className="text-xl md:text-3xl text-[#d4d4d8] leading-relaxed mb-12 max-w-3xl font-medium">
+              You're one click away from unlocking finance.
             </p>
 
             <a
-              href="#open-account"
-              className="inline-block bg-white text-black px-8 py-4 rounded-full text-base font-semibold hover:bg-gray-200 hover:scale-105 transition-all w-full sm:w-auto text-center shadow-lg"
+              href="#unlock-finance"
+              className="inline-block bg-white text-black px-10 py-5 rounded-full text-xl font-bold hover:bg-gray-200 hover:scale-[1.02] active:scale-95 transition-all w-full sm:w-auto text-center shadow-[0_0_30px_rgba(255,255,255,0.2)]"
             >
-              Open a bank account
+              Get a Quote
             </a>
-          </motion.div>
-
-          {/* Right: Floating Card */}
-          <motion.div
-            initial={{ opacity: 0, x: 50, rotateY: 20 }}
-            animate={{ opacity: 1, x: 0, rotateY: -15, rotateX: 10, rotateZ: -4 }}
-            transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
-            className="relative lg:ml-auto md:mr-10 flex justify-center lg:justify-end perspective-[1200px]"
-          >
-            {/* The Card */}
-            <div
-              className="relative w-[340px] h-[215px] sm:w-[420px] sm:h-[265px] bg-gradient-to-br from-[#2f2f32] via-[#0e0e11] to-[#000000] rounded-2xl shadow-[20px_40px_60px_-15px_rgba(0,0,0,0.8),_0_0_40px_rgba(59,130,246,0.3)] border-[0.5px] border-white/20 p-6 flex flex-col justify-between overflow-hidden"
-            >
-              {/* Card Glare/Reflection */}
-              <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-gradient-to-br from-white/10 via-transparent to-transparent rotate-[30deg] pointer-events-none mix-blend-overlay" />
-
-              {/* Logo / Text */}
-              <div className="flex justify-end items-center mr-2 mt-2">
-                <span className="text-transparent border-none bg-clip-text bg-gradient-to-b from-[#e5e5e5] to-[#a3a3a3] font-bold text-2xl sm:text-3xl tracking-tighter" style={{ fontFamily: 'Inter, sans-serif', WebkitTextFillColor: 'transparent' }}>
-                  Revolut <span className="font-normal opacity-80 backdrop-brightness-150">Business</span>
-                </span>
-              </div>
-
-              {/* Chip */}
-              <div className="w-10 h-8 sm:w-12 sm:h-9 rounded-sm border border-[#7a7a7a] bg-gradient-to-br from-[#c4c4c4] via-[#9e9e9e] to-[#757575] ml-4 mb-4 relative overflow-hidden flex flex-col justify-evenly px-1">
-                <div className="w-full h-[1px] bg-[#535353]/40" />
-                <div className="w-full h-[1px] bg-[#535353]/40" />
-                <div className="w-full h-[1px] bg-[#535353]/40" />
-              </div>
-            </div>
-
-            {/* Card Shadow on the pedestal */}
-            <div className="absolute -bottom-10 left-10 w-[80%] h-12 bg-black/60 blur-xl rounded-[100%] scale-y-50 -z-10" />
           </motion.div>
 
         </div>

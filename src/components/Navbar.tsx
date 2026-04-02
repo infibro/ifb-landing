@@ -11,7 +11,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center space-x-8">
             <a href="/" className="flex items-center space-x-2">
-              <span className="text-white font-bold text-2xl tracking-tighter">Revolut</span>
+              <span className="text-white font-bold text-xl tracking-tighter">Invoice Finance Brokers</span>
             </a>
             <div className="hidden md:flex items-center space-x-6">
               <a href="#personal" className="text-gray-300 hover:text-white px-2 py-2 text-sm font-medium transition-colors">Personal</a>
@@ -20,11 +20,11 @@ export default function Navbar() {
               <a href="#company" className="text-gray-300 hover:text-white px-2 py-2 text-sm font-medium transition-colors">Company</a>
             </div>
           </div>
-          
+
           <div className="hidden md:flex items-center space-x-6">
             <a href="#login" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Log in</a>
-            <a 
-              href="#signup" 
+            <a
+              href="#signup"
               className="bg-white text-black px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-200 transition-all flex items-center group"
             >
               Sign up
@@ -44,7 +44,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="md:hidden bg-black border-b border-white/10 px-4 pt-2 pb-6 space-y-1"
@@ -55,8 +55,8 @@ export default function Navbar() {
           <a href="#company" className="text-gray-300 hover:text-white block px-3 py-4 text-base font-medium border-b border-white/5">Company</a>
           <a href="#login" className="text-gray-300 hover:text-white block px-3 py-4 text-base font-medium border-b border-white/5">Log in</a>
           <div className="pt-4 px-3">
-            <a 
-              href="#signup" 
+            <a
+              href="#signup"
               className="w-full bg-white text-black px-6 py-3 rounded-full text-center font-semibold hover:bg-gray-200 transition-all block"
             >
               Sign up
