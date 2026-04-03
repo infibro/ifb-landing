@@ -1,5 +1,12 @@
--- Paste and run this script in your Supabase SQL Editor to create the enquiries table securely.
+-- 1. If you ALREADY have the table, run this ALTER block to add the 3 new columns:
+ALTER TABLE public.enquiries 
+ADD COLUMN IF NOT EXISTS company_description TEXT,
+ADD COLUMN IF NOT EXISTS debtor_description TEXT,
+ADD COLUMN IF NOT EXISTS risk_score INTEGER;
 
+
+-- ---------------------------------------------------------------------------------------------
+-- 2. If you are starting completely fresh, here is the full creation script for your table:
 CREATE TABLE IF NOT EXISTS public.enquiries (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
@@ -17,7 +24,10 @@ CREATE TABLE IF NOT EXISTS public.enquiries (
     debtor_contact_person TEXT NOT NULL,
     is_late TEXT NOT NULL,
     is_new_client TEXT NOT NULL,
-    gdpr_consent BOOLEAN NOT NULL DEFAULT FALSE
+    gdpr_consent BOOLEAN NOT NULL DEFAULT FALSE,
+    company_description TEXT,
+    debtor_description TEXT,
+    risk_score INTEGER
 );
 
 -- Enable Row Level Security (RLS)
