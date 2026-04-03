@@ -30,29 +30,70 @@ export default function CTA() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const fetchCHData = async (number: string) => {
-    if (!number || number.length < 5) return { data: null, error: 'Invalid number length' };
+    if (!number || number.length < 5) return { data: null, officers: null, error: 'Invalid number length' };
     try {
       const formattedNum = number.padStart(8, '0');
       // Read key from environment variable, falling back to original key for safety
       const apiKey = import.meta.env.VITE_COMPANIES_HOUSE_KEY || '1a1e424d-aac7-4c5f-96f5-1c258f0bbaf1';
+      const authHeader = 'Basic ' + window.btoa(apiKey + ':');
 
       const res = await fetch(`/api/companies-house/company/${formattedNum}`, {
-        headers: { 'Authorization': 'Basic ' + window.btoa(apiKey + ':') }
+        headers: { 'Authorization': authHeader }
       });
-      if (!res.ok) return { data: null, error: `HTTP ${res.status}` };
+      if (!res.ok) return { data: null, officers: null, error: `HTTP ${res.status}` };
       const data = await res.json();
-      return { data, error: null };
+
+      // Fetch officers asynchronously
+      let officers = [];
+      try {
+        const offRes = await fetch(`/api/companies-house/company/${formattedNum}/officers`, {
+          headers: { 'Authorization': authHeader }
+        });
+        if (offRes.ok) {
+          const offData = await offRes.json();
+          officers = offData.items || [];
+        }
+      } catch (err) {
+        console.error("Officer fetch failed", err);
+      }
+
+      return { data, officers, error: null };
     } catch (e: any) {
-      return { data: null, error: e.message || "Network proxy blocked" };
+      return { data: null, officers: null, error: e.message || "Network proxy blocked" };
     }
   };
 
   const generateDescription = (res: any, defaultName: string) => {
     if (!res.data) return `No Companies House data found for ${defaultName}. (Error: ${res.error})`;
+
+    // Core details
+    const name = res.data.company_name || defaultName;
     const status = res.data.company_status ? res.data.company_status.replace('-', ' ') : 'active';
-    const type = res.data.type || 'company';
-    const year = res.data.date_of_creation ? res.data.date_of_creation.substring(0, 4) : 'unknown year';
-    return `A ${status} ${type} incorporated in ${year}.`;
+    const type = res.data.type ? res.data.type.replace(/-/g, ' ') : 'company';
+    const year = res.data.date_of_creation ? res.data.date_of_creation.substring(0, 4) : 'an unknown year';
+    const sic = (res.data.sic_codes && res.data.sic_codes.length > 0) ? res.data.sic_codes.join(', ') : 'unspecified sectors';
+
+    // Address
+    const addr = res.data.registered_office_address || {};
+    const addressString = [addr.address_line_1, addr.address_line_2, addr.locality, addr.postal_code].filter(Boolean).join(', ') || 'No registered address on file';
+
+    // Accounts
+    const accounts = res.data.accounts || {};
+    const lastAccountsDate = accounts.last_accounts?.made_up_to || 'None filed';
+    const nextAccountsDate = accounts.next_accounts?.due_on || 'Unknown';
+
+    // Officers
+    let officersText = 'No officers found';
+    if (res.officers && res.officers.length > 0) {
+      officersText = res.officers.slice(0, 3).map((o: any) => {
+        const nat = o.nationality ? `(${o.nationality})` : '';
+        const idVerified = o.identification_verification_status === "verified" ? "[ID Verified]" : (o.identification_verification_status === "unverified" ? "[ID Unverified]" : "");
+        return `${o.name} ${nat} ${idVerified}`.trim();
+      }).join('; ');
+      if (res.officers.length > 3) officersText += ` (+${res.officers.length - 3} more)`;
+    }
+
+    return `${name} is an ${status} ${type} incorporated in ${year}. Nature of business (SIC): ${sic}. Registered office location: ${addressString}. Account Status: Last accounts made up to ${lastAccountsDate}, next accounts are due by ${nextAccountsDate}. Key connected people: ${officersText}.`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
