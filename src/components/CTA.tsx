@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { supabase } from "../supabaseClient";
+import * as sicLookup from "uk-sic-codes";
 
 export default function CTA() {
   const [step, setStep] = useState(1);
@@ -71,7 +72,17 @@ export default function CTA() {
     const status = res.data.company_status ? res.data.company_status.replace('-', ' ') : 'active';
     const type = res.data.type ? res.data.type.replace(/-/g, ' ') : 'company';
     const year = res.data.date_of_creation ? res.data.date_of_creation.substring(0, 4) : 'an unknown year';
-    const sic = (res.data.sic_codes && res.data.sic_codes.length > 0) ? res.data.sic_codes.join(', ') : 'unspecified sectors';
+
+    // Map SIC string codes to human-readable English definitions 
+    const sic = (res.data.sic_codes && res.data.sic_codes.length > 0)
+      ? res.data.sic_codes.map((code: string) => {
+        try {
+          return sicLookup.lookup(code)?.description || code;
+        } catch {
+          return code;
+        }
+      }).join(', ')
+      : 'unspecified sectors';
 
     // Address
     const addr = res.data.registered_office_address || {};
