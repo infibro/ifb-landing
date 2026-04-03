@@ -79,7 +79,7 @@ export default function CTA() {
                       {step === 1 && (
                         <motion.div key="step1" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} transition={{ duration: 0.2 }} className="space-y-6">
                           <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-400">How Much Funding Do You Need?</label>
+                            <label className="text-sm font-medium text-gray-400">How much funding do you need?</label>
                             <select
                               value={formData.fundingAmount}
                               onChange={(e) => setFormData({ ...formData, fundingAmount: e.target.value })}
@@ -92,7 +92,7 @@ export default function CTA() {
                             </select>
                           </div>
                           <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-400">How Quickly Do You Need Funding?</label>
+                            <label className="text-sm font-medium text-gray-400">How quickly do you need funding?</label>
                             <select
                               value={formData.fundingSpeed}
                               onChange={(e) => setFormData({ ...formData, fundingSpeed: e.target.value })}
@@ -122,7 +122,7 @@ export default function CTA() {
                         <motion.div key="step2" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} transition={{ duration: 0.2 }} className="space-y-5">
                           <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-1.5">
-                              <label className="text-sm font-medium text-gray-400">Your Name</label>
+                              <label className="text-sm font-medium text-gray-400">Your name</label>
                               <input type="text" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600" placeholder="John Doe" />
                             </div>
                             <div className="space-y-1.5">
@@ -131,21 +131,21 @@ export default function CTA() {
                             </div>
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-sm font-medium text-gray-400">Email Address</label>
+                            <label className="text-sm font-medium text-gray-400">Email address</label>
                             <input type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600" placeholder="john@company.com" />
                           </div>
                           <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-1.5">
-                              <label className="text-sm font-medium text-gray-400">Company Name</label>
+                              <label className="text-sm font-medium text-gray-400">Company name</label>
                               <input type="text" required value={formData.companyName} onChange={(e) => setFormData({ ...formData, companyName: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600" placeholder="Company Ltd" />
                             </div>
                             <div className="space-y-1.5">
-                              <label className="text-sm font-medium text-gray-400">Companies House Number</label>
+                              <label className="text-sm font-medium text-gray-400">Companies House number</label>
                               <input type="text" value={formData.companyReg} onChange={(e) => setFormData({ ...formData, companyReg: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600" placeholder="01234567" />
                             </div>
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-sm font-medium text-gray-400">Approx Monthly Invoice Value</label>
+                            <label className="text-sm font-medium text-gray-400">Approx monthly invoice value</label>
                             <select value={formData.monthlyValue} onChange={(e) => setFormData({ ...formData, monthlyValue: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors appearance-none md:text-[15px]">
                               <option>£10k - £50k</option>
                               <option>£50k - £250k</option>
@@ -160,17 +160,17 @@ export default function CTA() {
                       {step === 3 && (
                         <motion.div key="step3" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} transition={{ duration: 0.2 }} className="space-y-5">
                           <div className="space-y-1.5">
-                            <label className="text-sm font-medium text-gray-400">Debtor Company Name</label>
+                            <label className="text-sm font-medium text-gray-400">Debtor company name</label>
                             <input type="text" required value={formData.debtorCompanyName} onChange={(e) => setFormData({ ...formData, debtorCompanyName: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600 font-medium" placeholder="Company Ltd" />
                           </div>
 
                           <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-1.5">
-                              <label className="text-sm font-medium text-gray-400">Companies House Number</label>
+                              <label className="text-sm font-medium text-gray-400">Companies House number</label>
                               <input type="text" required value={formData.debtorCompanyNumber} onChange={(e) => setFormData({ ...formData, debtorCompanyNumber: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600 font-medium" placeholder="01234567" />
                             </div>
                             <div className="space-y-1.5">
-                              <label className="text-sm font-medium text-gray-400">Contact Person Name</label>
+                              <label className="text-sm font-medium text-gray-400">Contact person name</label>
                               <input type="text" required value={formData.debtorContactPerson} onChange={(e) => setFormData({ ...formData, debtorContactPerson: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600 font-medium" placeholder="John Doe" />
                             </div>
                           </div>
