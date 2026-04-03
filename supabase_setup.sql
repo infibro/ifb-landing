@@ -1,8 +1,9 @@
--- 1. If you ALREADY have the table, run this ALTER block to add the 3 new columns:
+-- 1. If you ALREADY have the table, run this ALTER block to add the 4 new columns:
 ALTER TABLE public.enquiries 
 ADD COLUMN IF NOT EXISTS company_description TEXT,
 ADD COLUMN IF NOT EXISTS debtor_description TEXT,
-ADD COLUMN IF NOT EXISTS risk_score INTEGER;
+ADD COLUMN IF NOT EXISTS risk_score INTEGER,
+ADD COLUMN IF NOT EXISTS risk_reasoning TEXT;
 
 
 -- ---------------------------------------------------------------------------------------------
@@ -27,7 +28,8 @@ CREATE TABLE IF NOT EXISTS public.enquiries (
     gdpr_consent BOOLEAN NOT NULL DEFAULT FALSE,
     company_description TEXT,
     debtor_description TEXT,
-    risk_score INTEGER
+    risk_score INTEGER,
+    risk_reasoning TEXT
 );
 
 -- Enable Row Level Security (RLS)

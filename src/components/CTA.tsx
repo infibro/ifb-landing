@@ -30,24 +30,25 @@ export default function CTA() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const fetchCHData = async (number: string) => {
-    if (!number || number.length < 5) return null;
+    if (!number || number.length < 5) return { data: null, error: 'Invalid number length' };
     try {
       const formattedNum = number.padStart(8, '0');
       const res = await fetch(`/api/companies-house/company/${formattedNum}`, {
         headers: { 'Authorization': 'Basic ' + window.btoa('1a1e424d-aac7-4c5f-96f5-1c258f0bbaf1:') }
       });
-      if (!res.ok) return null;
-      return await res.json();
-    } catch {
-      return null;
+      if (!res.ok) return { data: null, error: `HTTP ${res.status}` };
+      const data = await res.json();
+      return { data, error: null };
+    } catch (e: any) {
+      return { data: null, error: e.message || "Network proxy blocked" };
     }
   };
 
-  const generateDescription = (data: any, defaultName: string) => {
-    if (!data) return `No Companies House data found for ${defaultName}.`;
-    const status = data.company_status ? data.company_status.replace('-', ' ') : 'active';
-    const type = data.type || 'company';
-    const year = data.date_of_creation ? data.date_of_creation.substring(0, 4) : 'unknown year';
+  const generateDescription = (res: any, defaultName: string) => {
+    if (!res.data) return `No Companies House data found for ${defaultName}. (Error: ${res.error})`;
+    const status = res.data.company_status ? res.data.company_status.replace('-', ' ') : 'active';
+    const type = res.data.type || 'company';
+    const year = res.data.date_of_creation ? res.data.date_of_creation.substring(0, 4) : 'unknown year';
     return `A ${status} ${type} incorporated in ${year}.`;
   };
 
@@ -56,34 +57,53 @@ export default function CTA() {
     setIsProcessing(true);
 
     // Fetch details for both companies in parallel securely in the background
-    const [applicantData, debtorData] = await Promise.all([
+    const [applicantRes, debtorRes] = await Promise.all([
       fetchCHData(formData.companyReg),
       fetchCHData(formData.debtorCompanyNumber)
     ]);
 
     // Generate automated narrative summaries
-    const company_description = generateDescription(applicantData, formData.companyName);
-    const debtor_description = generateDescription(debtorData, formData.debtorCompanyName);
+    const company_description = generateDescription(applicantRes, formData.companyName);
+    const debtor_description = generateDescription(debtorRes, formData.debtorCompanyName);
 
-    // Calculate Algorithmic Risk Score (0-10)
+    // Calculate Algorithmic Risk Score (0-10) and compile reasoning logic
     let risk_score = 5; // Base default score
-    if (formData.isLate === "Yes") risk_score += 4;
-    if (formData.isNewClient === "Yes") risk_score += 2;
+    let reasoning = ["Base starting risk score is 5/10."];
 
-    if (debtorData) {
-      if (debtorData.company_status && debtorData.company_status !== 'active') {
+    if (formData.isLate === "Yes") {
+      risk_score += 4;
+      reasoning.push("Invoice is marked as LATE (+4 risk).");
+    }
+    if (formData.isNewClient === "Yes") {
+      risk_score += 2;
+      reasoning.push("Debtor is a NEW client/customer (+2 risk).");
+    }
+
+    if (debtorRes.data) {
+      if (debtorRes.data.company_status && debtorRes.data.company_status !== 'active') {
         risk_score += 2; // Extra risk for dissolved/in-administration status
+        reasoning.push(`Debtor company status on CH is '${debtorRes.data.company_status}' (+2 risk).`);
+      } else {
+        reasoning.push("Debtor company status on CH is 'active' (safe).");
       }
-      if (debtorData.date_of_creation) {
-        const age = new Date().getFullYear() - parseInt(debtorData.date_of_creation.substring(0, 4));
-        if (age > 10) risk_score = Math.max(0, risk_score - 1); // Reduction in risk for highly established companies
+
+      if (debtorRes.data.date_of_creation) {
+        const age = new Date().getFullYear() - parseInt(debtorRes.data.date_of_creation.substring(0, 4));
+        if (age > 10) {
+          risk_score -= 1; // Reduction in risk for highly established companies
+          reasoning.push(`Debtor company is highly established (${age} years old) (-1 risk).`);
+        } else {
+          reasoning.push(`Debtor company is ${age} years old (neutral).`);
+        }
       }
     } else {
       risk_score += 1; // Debtor not found on CH registry
+      reasoning.push(`Debtor company was not found on Companies House (+1 risk). Reason: ${debtorRes.error}`);
     }
 
     // Clamp score within 0 to 10
     risk_score = Math.min(10, Math.max(0, risk_score));
+    const risk_reasoning = reasoning.join(" ");
 
     // Transmit to Supabase
     try {
@@ -95,10 +115,10 @@ export default function CTA() {
           name: formData.name,
           phone: formData.phone,
           email: formData.email,
-          company_name: applicantData?.company_name || formData.companyName,
+          company_name: applicantRes.data?.company_name || formData.companyName,
           company_reg: formData.companyReg,
           monthly_value: formData.monthlyValue,
-          debtor_company_name: debtorData?.company_name || formData.debtorCompanyName,
+          debtor_company_name: debtorRes.data?.company_name || formData.debtorCompanyName,
           debtor_company_number: formData.debtorCompanyNumber,
           debtor_contact_person: formData.debtorContactPerson,
           is_late: formData.isLate,
@@ -106,7 +126,8 @@ export default function CTA() {
           gdpr_consent: formData.gdprConsent,
           company_description,
           debtor_description,
-          risk_score
+          risk_score,
+          risk_reasoning
         }
       ]);
 
