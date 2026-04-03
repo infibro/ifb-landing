@@ -33,8 +33,11 @@ export default function CTA() {
     if (!number || number.length < 5) return { data: null, error: 'Invalid number length' };
     try {
       const formattedNum = number.padStart(8, '0');
+      // Read key from environment variable, falling back to original key for safety
+      const apiKey = import.meta.env.VITE_COMPANIES_HOUSE_KEY || '1a1e424d-aac7-4c5f-96f5-1c258f0bbaf1';
+
       const res = await fetch(`/api/companies-house/company/${formattedNum}`, {
-        headers: { 'Authorization': 'Basic ' + window.btoa('1a1e424d-aac7-4c5f-96f5-1c258f0bbaf1:') }
+        headers: { 'Authorization': 'Basic ' + window.btoa(apiKey + ':') }
       });
       if (!res.ok) return { data: null, error: `HTTP ${res.status}` };
       const data = await res.json();
