@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { supabase } from "../supabaseClient";
 
 export default function CTA() {
   const [step, setStep] = useState(1);
@@ -26,10 +27,60 @@ export default function CTA() {
   const nextStep = () => setStep((s) => Math.min(3, s + 1));
   const prevStep = () => setStep((s) => Math.max(1, s - 1));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isLookingUp, setIsLookingUp] = useState(false);
+  const lookupCompany = async (companyNumber: string, isDebtor: boolean = false) => {
+    if (!companyNumber || companyNumber.length < 5) return;
+    setIsLookingUp(true);
+    try {
+      // We prepend '0' characters natively if the number is less than 8 chars (standard CH process)
+      const formattedNum = companyNumber.padStart(8, '0');
+      const res = await fetch(`/api/companies-house/company/${formattedNum}`, {
+        headers: {
+          'Authorization': 'Basic ' + window.btoa('1a1e424d-aac7-4c5f-96f5-1c258f0bbaf1:')
+        }
+      });
+      const data = await res.json();
+      if (data && data.company_name) {
+        if (isDebtor) {
+          setFormData(prev => ({ ...prev, debtorCompanyName: data.company_name }));
+        } else {
+          setFormData(prev => ({ ...prev, companyName: data.company_name }));
+        }
+      }
+    } catch (error) {
+      console.error("Company lookup failed:", error);
+    }
+    setIsLookingUp(false);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
-    // API transmission logic would trigger here
+
+    // Store softly to Supabase (bypassing failures gracefully if disconnected)
+    try {
+      await supabase.from('enquiries').insert([
+        {
+          funding_amount: formData.fundingAmount,
+          funding_speed: formData.fundingSpeed,
+          purpose: formData.purpose,
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          company_name: formData.companyName,
+          company_reg: formData.companyReg,
+          monthly_value: formData.monthlyValue,
+          debtor_company_name: formData.debtorCompanyName,
+          debtor_company_number: formData.debtorCompanyNumber,
+          debtor_contact_person: formData.debtorContactPerson,
+          is_late: formData.isLate,
+          is_new_client: formData.isNewClient,
+          gdpr_consent: formData.gdprConsent,
+        }
+      ]);
+    } catch (err) {
+      console.error("Supabase insert error:", err);
+    }
   };
 
   return (
@@ -141,7 +192,12 @@ export default function CTA() {
                             </div>
                             <div className="space-y-1.5">
                               <label className="text-sm font-medium text-gray-400">Companies House number</label>
-                              <input type="text" value={formData.companyReg} onChange={(e) => setFormData({ ...formData, companyReg: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600" placeholder="01234567" />
+                              <div className="flex gap-2">
+                                <input type="text" value={formData.companyReg} onChange={(e) => setFormData({ ...formData, companyReg: e.target.value })} className="flex-1 w-[50%] bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600" placeholder="01234567" />
+                                <button type="button" onClick={() => lookupCompany(formData.companyReg, false)} disabled={isLookingUp} className="bg-white/10 hover:bg-white/20 text-white px-4 py-3 rounded-xl text-sm font-medium transition-colors">
+                                  {isLookingUp ? '...' : 'Lookup'}
+                                </button>
+                              </div>
                             </div>
                           </div>
                           <div className="space-y-1.5">
@@ -167,7 +223,12 @@ export default function CTA() {
                           <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-1.5">
                               <label className="text-sm font-medium text-gray-400">Companies House number</label>
-                              <input type="text" required value={formData.debtorCompanyNumber} onChange={(e) => setFormData({ ...formData, debtorCompanyNumber: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600 font-medium" placeholder="01234567" />
+                              <div className="flex gap-2">
+                                <input type="text" required value={formData.debtorCompanyNumber} onChange={(e) => setFormData({ ...formData, debtorCompanyNumber: e.target.value })} className="flex-1 w-[50%] bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600 font-medium" placeholder="01234567" />
+                                <button type="button" onClick={() => lookupCompany(formData.debtorCompanyNumber, true)} disabled={isLookingUp} className="bg-white/10 hover:bg-white/20 text-white px-4 py-3 rounded-xl text-sm font-medium transition-colors">
+                                  {isLookingUp ? '...' : 'Lookup'}
+                                </button>
+                              </div>
                             </div>
                             <div className="space-y-1.5">
                               <label className="text-sm font-medium text-gray-400">Contact person name</label>
