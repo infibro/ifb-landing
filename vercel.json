@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/companies-house/:match*",
+            "destination": "https://api.company-information.service.gov.uk/:match*"
+        }
+    ]
+}
