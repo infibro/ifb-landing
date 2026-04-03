@@ -192,12 +192,7 @@ export default function CTA() {
                             </div>
                             <div className="space-y-1.5">
                               <label className="text-sm font-medium text-gray-400">Companies House number</label>
-                              <div className="flex gap-2">
-                                <input type="text" value={formData.companyReg} onChange={(e) => setFormData({ ...formData, companyReg: e.target.value })} className="flex-1 w-[50%] bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600" placeholder="01234567" />
-                                <button type="button" onClick={() => lookupCompany(formData.companyReg, false)} disabled={isLookingUp} className="bg-white/10 hover:bg-white/20 text-white px-4 py-3 rounded-xl text-sm font-medium transition-colors">
-                                  {isLookingUp ? '...' : 'Lookup'}
-                                </button>
-                              </div>
+                              <input type="text" value={formData.companyReg} onChange={(e) => setFormData({ ...formData, companyReg: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600" placeholder="01234567" />
                             </div>
                           </div>
                           <div className="space-y-1.5">
@@ -223,12 +218,7 @@ export default function CTA() {
                           <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-1.5">
                               <label className="text-sm font-medium text-gray-400">Companies House number</label>
-                              <div className="flex gap-2">
-                                <input type="text" required value={formData.debtorCompanyNumber} onChange={(e) => setFormData({ ...formData, debtorCompanyNumber: e.target.value })} className="flex-1 w-[50%] bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600 font-medium" placeholder="01234567" />
-                                <button type="button" onClick={() => lookupCompany(formData.debtorCompanyNumber, true)} disabled={isLookingUp} className="bg-white/10 hover:bg-white/20 text-white px-4 py-3 rounded-xl text-sm font-medium transition-colors">
-                                  {isLookingUp ? '...' : 'Lookup'}
-                                </button>
-                              </div>
+                              <input type="text" required value={formData.debtorCompanyNumber} onChange={(e) => setFormData({ ...formData, debtorCompanyNumber: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600 font-medium" placeholder="01234567" />
                             </div>
                             <div className="space-y-1.5">
                               <label className="text-sm font-medium text-gray-400">Contact person name</label>
@@ -273,15 +263,15 @@ export default function CTA() {
                     {/* Footer Controls */}
                     <div className="mt-8 flex gap-3 pt-6 border-t border-white/5">
                       {step > 1 && (
-                        <button type="button" onClick={prevStep} className="px-5 py-4 rounded-xl border border-white/10 text-white font-semibold hover:bg-white/5 transition-colors flex items-center justify-center">
+                        <button type="button" onClick={prevStep} disabled={isProcessing} className="px-5 py-4 rounded-xl border border-white/10 text-white font-semibold hover:bg-white/5 transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
                           <ArrowLeft className="w-5 h-5" />
                         </button>
                       )}
 
-                      <button type="submit" className="flex-1 bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition-all flex items-center justify-center group shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                        {step === 3 ? "Submit Enquiry" : "Next Step"}
+                      <button type="submit" disabled={isProcessing} className="flex-1 bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition-all flex items-center justify-center group shadow-[0_0_20px_rgba(255,255,255,0.1)] disabled:opacity-50 disabled:cursor-wait">
+                        {step === 3 ? (isProcessing ? "Processing Enquiry..." : "Submit Enquiry") : "Next Step"}
                         {step === 3 ? (
-                          <CheckCircle2 className="ml-2 w-5 h-5 group-hover:scale-110 transition-transform" />
+                          !isProcessing && <CheckCircle2 className="ml-2 w-5 h-5 group-hover:scale-110 transition-transform" />
                         ) : (
                           <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         )}
