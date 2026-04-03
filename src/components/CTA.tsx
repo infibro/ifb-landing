@@ -15,7 +15,9 @@ export default function CTA() {
     companyName: "",
     companyReg: "",
     monthlyValue: "£10k - £50k",
-    debtorCompany: "",
+    debtorCompanyName: "",
+    debtorCompanyNumber: "",
+    debtorContactPerson: "",
     isLate: "No",
     isNewClient: "No",
     gdprConsent: false,
@@ -138,7 +140,7 @@ export default function CTA() {
                               <input type="text" required value={formData.companyName} onChange={(e) => setFormData({ ...formData, companyName: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600" placeholder="Company Ltd" />
                             </div>
                             <div className="space-y-1.5">
-                              <label className="text-sm font-medium text-gray-400">Reg. Number</label>
+                              <label className="text-sm font-medium text-gray-400">Companies House Number</label>
                               <input type="text" value={formData.companyReg} onChange={(e) => setFormData({ ...formData, companyReg: e.target.value })} className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-gray-600" placeholder="01234567" />
                             </div>
                           </div>
