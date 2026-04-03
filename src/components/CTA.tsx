@@ -27,39 +27,67 @@ export default function CTA() {
   const nextStep = () => setStep((s) => Math.min(3, s + 1));
   const prevStep = () => setStep((s) => Math.max(1, s - 1));
 
-  const [isLookingUp, setIsLookingUp] = useState(false);
-  const lookupCompany = async (companyNumber: string, isDebtor: boolean = false) => {
-    if (!companyNumber || companyNumber.length < 5) return;
-    setIsLookingUp(true);
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const fetchCHData = async (number: string) => {
+    if (!number || number.length < 5) return null;
     try {
-      // We prepend '0' characters natively if the number is less than 8 chars (standard CH process)
-      const formattedNum = companyNumber.padStart(8, '0');
+      const formattedNum = number.padStart(8, '0');
       const res = await fetch(`/api/companies-house/company/${formattedNum}`, {
-        headers: {
-          'Authorization': 'Basic ' + window.btoa('1a1e424d-aac7-4c5f-96f5-1c258f0bbaf1:')
-        }
+        headers: { 'Authorization': 'Basic ' + window.btoa('1a1e424d-aac7-4c5f-96f5-1c258f0bbaf1:') }
       });
-      const data = await res.json();
-      if (data && data.company_name) {
-        if (isDebtor) {
-          setFormData(prev => ({ ...prev, debtorCompanyName: data.company_name }));
-        } else {
-          setFormData(prev => ({ ...prev, companyName: data.company_name }));
-        }
-      }
-    } catch (error) {
-      console.error("Company lookup failed:", error);
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
     }
-    setIsLookingUp(false);
+  };
+
+  const generateDescription = (data: any, defaultName: string) => {
+    if (!data) return `No Companies House data found for ${defaultName}.`;
+    const status = data.company_status ? data.company_status.replace('-', ' ') : 'active';
+    const type = data.type || 'company';
+    const year = data.date_of_creation ? data.date_of_creation.substring(0, 4) : 'unknown year';
+    return `A ${status} ${type} incorporated in ${year}.`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsProcessing(true);
 
-    // Store softly to Supabase (bypassing failures gracefully if disconnected)
+    // Fetch details for both companies in parallel securely in the background
+    const [applicantData, debtorData] = await Promise.all([
+      fetchCHData(formData.companyReg),
+      fetchCHData(formData.debtorCompanyNumber)
+    ]);
+
+    // Generate automated narrative summaries
+    const company_description = generateDescription(applicantData, formData.companyName);
+    const debtor_description = generateDescription(debtorData, formData.debtorCompanyName);
+
+    // Calculate Algorithmic Risk Score (0-10)
+    let risk_score = 5; // Base default score
+    if (formData.isLate === "Yes") risk_score += 4;
+    if (formData.isNewClient === "Yes") risk_score += 2;
+
+    if (debtorData) {
+      if (debtorData.company_status && debtorData.company_status !== 'active') {
+        risk_score += 2; // Extra risk for dissolved/in-administration status
+      }
+      if (debtorData.date_of_creation) {
+        const age = new Date().getFullYear() - parseInt(debtorData.date_of_creation.substring(0, 4));
+        if (age > 10) risk_score = Math.max(0, risk_score - 1); // Reduction in risk for highly established companies
+      }
+    } else {
+      risk_score += 1; // Debtor not found on CH registry
+    }
+
+    // Clamp score within 0 to 10
+    risk_score = Math.min(10, Math.max(0, risk_score));
+
+    // Transmit to Supabase
     try {
-      await supabase.from('enquiries').insert([
+      const { error } = await supabase.from('enquiries').insert([
         {
           funding_amount: formData.fundingAmount,
           funding_speed: formData.fundingSpeed,
@@ -67,20 +95,34 @@ export default function CTA() {
           name: formData.name,
           phone: formData.phone,
           email: formData.email,
-          company_name: formData.companyName,
+          company_name: applicantData?.company_name || formData.companyName,
           company_reg: formData.companyReg,
           monthly_value: formData.monthlyValue,
-          debtor_company_name: formData.debtorCompanyName,
+          debtor_company_name: debtorData?.company_name || formData.debtorCompanyName,
           debtor_company_number: formData.debtorCompanyNumber,
           debtor_contact_person: formData.debtorContactPerson,
           is_late: formData.isLate,
           is_new_client: formData.isNewClient,
           gdpr_consent: formData.gdprConsent,
+          company_description,
+          debtor_description,
+          risk_score
         }
       ]);
+
+      if (error) {
+        console.error("Supabase insert error:", error);
+        alert("Database connection failed. Please ensure the Supabase credentials are loaded and try again.");
+        setIsProcessing(false);
+        return;
+      }
+
+      setIsSubmitted(true);
     } catch (err) {
-      console.error("Supabase insert error:", err);
+      console.error("Submission failed:", err);
+      alert("Submission failed drastically. Please check your network.");
     }
+    setIsProcessing(false);
   };
 
   return (
