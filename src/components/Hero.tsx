@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion as m } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
@@ -9,21 +10,69 @@ const bullets = [
   "Dedicated account manager support",
 ];
 
+/** Generates a CSS box-shadow string of n random white stars */
+function makeStars(n: number): string {
+  const pairs: string[] = [];
+  for (let i = 0; i < n; i++) {
+    const x = Math.floor(Math.random() * 2000);
+    const y = Math.floor(Math.random() * 2000);
+    pairs.push(`${x}px ${y}px #FFF`);
+  }
+  return pairs.join(", ");
+}
+
+// Generate once at module load so they're stable across renders
+const shadowsSmall  = makeStars(700);
+const shadowsMedium = makeStars(200);
+const shadowsBig    = makeStars(100);
+
+const starStyles = `
+  @keyframes animStar {
+    from { transform: translateY(0px); }
+    to   { transform: translateY(-2000px); }
+  }
+
+  .stars-sm, .stars-md, .stars-lg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border-radius: 50%;
+  }
+
+  .stars-sm         { width: 1px; height: 1px; box-shadow: ${shadowsSmall};  animation: animStar  50s linear infinite; }
+  .stars-sm::after  { content: ""; position: absolute; top: 2000px; left: 0; width: 1px; height: 1px; box-shadow: ${shadowsSmall}; }
+
+  .stars-md         { width: 2px; height: 2px; box-shadow: ${shadowsMedium}; animation: animStar 100s linear infinite; }
+  .stars-md::after  { content: ""; position: absolute; top: 2000px; left: 0; width: 2px; height: 2px; box-shadow: ${shadowsMedium}; }
+
+  .stars-lg         { width: 3px; height: 3px; box-shadow: ${shadowsBig};    animation: animStar 150s linear infinite; }
+  .stars-lg::after  { content: ""; position: absolute; top: 2000px; left: 0; width: 3px; height: 3px; box-shadow: ${shadowsBig}; }
+`;
+
 export default function Hero() {
   return (
     <section
       id="hero-section"
-      className="min-h-screen bg-black flex items-center"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ background: "radial-gradient(ellipse at bottom, #0d1a2a 0%, #050505 100%)" }}
     >
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-32">
-        <div className="max-w-2xl xl:max-w-3xl">
+      {/* Star layers */}
+      <style>{starStyles}</style>
+      <div className="stars-sm" aria-hidden="true" />
+      <div className="stars-md" aria-hidden="true" />
+      <div className="stars-lg" aria-hidden="true" />
 
-          {/* Heading */}
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-32">
+        <div className="max-w-2xl xl:max-w-2xl">
+
+          {/* Heading — slightly smaller than before */}
           <m.h1
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: "easeOut" }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.07] tracking-tight text-white mb-8"
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-white mb-7"
           >
             Check if you qualify for{" "}
             <br className="hidden sm:block" />
@@ -52,14 +101,17 @@ export default function Hero() {
             className="space-y-2 mb-12"
           >
             {bullets.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-sm sm:text-base text-white font-semibold">
+              <li
+                key={item}
+                className="flex items-start gap-2 text-sm sm:text-base text-white font-semibold"
+              >
                 <span className="text-[#00AEEF] mt-[3px]">•</span>
                 {item}
               </li>
             ))}
           </m.ul>
 
-          {/* CTA button */}
+          {/* CTA */}
           <m.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -67,7 +119,7 @@ export default function Hero() {
           >
             <a
               href="#enquiry"
-              className="inline-flex items-center gap-3 bg-[#00AEEF] hover:bg-[#009fd8] active:scale-95 text-black font-bold text-lg px-8 py-4 rounded-full transition-all duration-200 shadow-[0_0_30px_rgba(0,174,239,0.35)] hover:shadow-[0_0_45px_rgba(0,174,239,0.55)]"
+              className="inline-flex items-center gap-3 bg-[#00AEEF] hover:bg-[#009fd8] active:scale-95 text-black font-bold text-lg px-8 py-4 rounded-full transition-all duration-200 shadow-[0_0_30px_rgba(0,174,239,0.35)] hover:shadow-[0_0_50px_rgba(0,174,239,0.6)]"
             >
               Start
               <ArrowRight className="w-5 h-5" />
