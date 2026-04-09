@@ -1,4 +1,5 @@
-import { motion as m } from "motion/react";
+import { useRef } from "react";
+import { motion as m, useScroll, useTransform } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
 
 const bullets = [
@@ -7,26 +8,24 @@ const bullets = [
   "Access funds against your outstanding invoices",
 ];
 
+// Each card: z-index order (back → front), rotation, and X/Y offset within the stack
 const sectors = [
-  { src: "/construction.jpg",  label: "Construction" },
-  { src: "/logistics.jpg",     label: "Logistics" },
-  { src: "/manufacturing.jpg", label: "Manufacturing" },
-  { src: "/recruitment.jpg",   label: "Recruitment" },
+  { src: "/recruitment.jpg",   label: "Recruitment",   z: 1, rotate: -10, tx: -30, ty:  60 },
+  { src: "/manufacturing.jpg", label: "Manufacturing",  z: 2, rotate:  -4, tx:  0,  ty:  20 },
+  { src: "/logistics.jpg",     label: "Logistics",      z: 3, rotate:   3, tx:  30, ty: -10 },
+  { src: "/construction.jpg",  label: "Construction",   z: 4, rotate:   9, tx:  55, ty: -40 },
 ];
 
 const stats = [
-  { value: "24 hrs",     label: "to get a decision" },
-  { value: "Up to 90%",  label: "of invoice value released" },
-  { value: "No fees",    label: "for early repayment" },
+  { value: "24 hrs",    label: "to get a decision" },
+  { value: "Up to 90%", label: "of invoice value released" },
+  { value: "No fees",   label: "for early repayment" },
 ];
 
-/** Generates a CSS box-shadow string of n random white stars */
 function makeStars(n: number): string {
   const pairs: string[] = [];
   for (let i = 0; i < n; i++) {
-    const x = Math.floor(Math.random() * 2000);
-    const y = Math.floor(Math.random() * 2000);
-    pairs.push(`${x}px ${y}px #FFF`);
+    pairs.push(`${Math.floor(Math.random() * 2000)}px ${Math.floor(Math.random() * 2000)}px #FFF`);
   }
   return pairs.join(", ");
 }
@@ -41,23 +40,32 @@ const starStyles = `
     to   { transform: translateY(-2000px); }
   }
   .stars-sm, .stars-md, .stars-lg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: transparent;
-    border-radius: 50%;
+    position: absolute; top: 0; left: 0; background: transparent; border-radius: 50%;
   }
-  .stars-sm        { width: 1px; height: 1px; box-shadow: ${shadowsSmall};  animation: animStar  50s linear infinite; }
-  .stars-sm::after { content: ""; position: absolute; top: 2000px; left: 0; width: 1px; height: 1px; box-shadow: ${shadowsSmall}; }
-  .stars-md        { width: 2px; height: 2px; box-shadow: ${shadowsMedium}; animation: animStar 100s linear infinite; }
-  .stars-md::after { content: ""; position: absolute; top: 2000px; left: 0; width: 2px; height: 2px; box-shadow: ${shadowsMedium}; }
-  .stars-lg        { width: 3px; height: 3px; box-shadow: ${shadowsBig};    animation: animStar 150s linear infinite; }
-  .stars-lg::after { content: ""; position: absolute; top: 2000px; left: 0; width: 3px; height: 3px; box-shadow: ${shadowsBig}; }
+  .stars-sm        { width:1px; height:1px; box-shadow:${shadowsSmall};  animation: animStar  50s linear infinite; }
+  .stars-sm::after { content:""; position:absolute; top:2000px; left:0; width:1px; height:1px; box-shadow:${shadowsSmall}; }
+  .stars-md        { width:2px; height:2px; box-shadow:${shadowsMedium}; animation: animStar 100s linear infinite; }
+  .stars-md::after { content:""; position:absolute; top:2000px; left:0; width:2px; height:2px; box-shadow:${shadowsMedium}; }
+  .stars-lg        { width:3px; height:3px; box-shadow:${shadowsBig};    animation: animStar 150s linear infinite; }
+  .stars-lg::after { content:""; position:absolute; top:2000px; left:0; width:3px; height:3px; box-shadow:${shadowsBig}; }
 `;
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Scroll-linked values — track progress as section leaves viewport
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Images fade out and drift up as user scrolls away
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
+  const imageY       = useTransform(scrollYProgress, [0, 0.45], [0, -60]);
+
   return (
     <section
+      ref={sectionRef}
       id="hero-section"
       className="relative overflow-hidden"
       style={{ background: "radial-gradient(ellipse at bottom, #0d1a2a 0%, #050505 100%)" }}
@@ -68,13 +76,12 @@ export default function Hero() {
       <div className="stars-md" aria-hidden="true" />
       <div className="stars-lg" aria-hidden="true" />
 
-      {/* ── Main hero content ── */}
+      {/* ── Main content ── */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-36 pb-16">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-20">
 
           {/* ── LEFT: text ── */}
           <div className="flex-1 min-w-0">
-
             <m.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -98,7 +105,6 @@ export default function Hero() {
               for customers to pay.
             </m.p>
 
-            {/* Bullets */}
             <m.ul
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
@@ -113,7 +119,6 @@ export default function Hero() {
               ))}
             </m.ul>
 
-            {/* CTA + sub-note */}
             <m.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
@@ -130,31 +135,42 @@ export default function Hero() {
             </m.div>
           </div>
 
-          {/* ── RIGHT: 2×2 image grid ── */}
+          {/* ── RIGHT: overlapping fanned image stack ── */}
           <m.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-            className="flex-shrink-0 w-full lg:w-[480px] xl:w-[520px]"
+            style={{ opacity: imageOpacity, y: imageY, width: 480, height: 420 }}
+            className="flex-shrink-0 relative hidden lg:flex items-center justify-center"
           >
-            <div className="grid grid-cols-2 gap-3">
-              {sectors.map(({ src, label }, i) => (
+            <div className="relative" style={{ width: 420, height: 400 }}>
+              {sectors.map(({ src, label, z, rotate, tx, ty }, i) => (
                 <m.div
                   key={label}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 + i * 0.08 }}
-                  className="relative overflow-hidden rounded-2xl aspect-[4/3] group"
+                  initial={{ opacity: 0, rotate: 0, x: 0, y: 30 }}
+                  animate={{ opacity: 1, rotate, x: tx, y: ty }}
+                  transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 + i * 0.1 }}
+                  whileHover={{ scale: 1.04, zIndex: 10, transition: { duration: 0.2 } }}
+                  className="absolute cursor-pointer"
+                  style={{
+                    zIndex: z,
+                    top: "50%",
+                    left: "50%",
+                    marginTop: -150,
+                    marginLeft: -100,
+                    width: 200,
+                    height: 260,
+                    borderRadius: 16,
+                    overflow: "hidden",
+                    boxShadow: "0 20px 50px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06)",
+                  }}
                 >
                   <img
                     src={src}
                     alt={`${label} invoice finance`}
-                    className="w-full h-full object-cover brightness-75 group-hover:brightness-90 group-hover:scale-105 transition-all duration-500"
+                    className="w-full h-full object-cover brightness-80"
                     loading={i < 2 ? "eager" : "lazy"}
                   />
-                  {/* Label badge */}
-                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/80 to-transparent">
-                    <span className="text-xs font-bold text-white tracking-widest uppercase">
+                  {/* Label */}
+                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/90 to-transparent">
+                    <span className="text-[10px] font-bold text-white tracking-widest uppercase">
                       {label}
                     </span>
                   </div>
@@ -166,10 +182,10 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Trust / stats bar ── */}
+      {/* ── Trust bar ── */}
       <div className="relative z-10 border-t border-white/10 bg-black/40 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-5">
-          <div className="flex flex-wrap justify-start gap-8 lg:gap-16">
+          <div className="flex flex-wrap gap-8 lg:gap-16">
             {stats.map(({ value, label }) => (
               <div key={value} className="flex flex-col">
                 <span className="text-lg font-extrabold text-white">{value}</span>
