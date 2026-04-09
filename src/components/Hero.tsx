@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion as m, useScroll, useTransform } from "motion/react";
-import { CheckCircle2, Lock, Star } from "lucide-react";
+import { CheckCircle2, Lock, Star, ArrowRight } from "lucide-react";
 
 const bullets = [
   "Apply in minutes with a simple online form",
@@ -213,9 +213,10 @@ export default function Hero() {
             {/* New CTA Button */}
             <a
               href="#enquiry"
-              className="bg-yellow-400 text-black px-6 py-2.5 rounded-full text-[11px] font-extrabold hover:bg-yellow-500 transition-all shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.5)]"
+              className="inline-flex items-center gap-2 bg-yellow-400 text-black px-6 py-2.5 rounded-full text-[11px] font-extrabold hover:bg-yellow-500 transition-all shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.5)]"
             >
               Search for Invoice Finance Brokers
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
 
           </div>
