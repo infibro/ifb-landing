@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion as m, useScroll, useTransform } from "motion/react";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Lock, Star } from "lucide-react";
 
 const bullets = [
   "Apply in minutes with a simple online form",
@@ -184,14 +184,40 @@ export default function Hero() {
 
       {/* ── Trust bar ── */}
       <div className="relative z-10 border-t border-white/10 bg-black/40 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-5">
-          <div className="flex flex-wrap gap-8 lg:gap-16">
-            {stats.map(({ value, label }) => (
-              <div key={value} className="flex flex-col">
-                <span className="text-lg font-extrabold text-white">{value}</span>
-                <span className="text-xs text-gray-400">{label}</span>
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-6">
+          <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-20 text-center">
+            
+            {/* Stars & Padlock Group */}
+            <div className="flex items-center gap-4">
+              <div className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                ))}
               </div>
-            ))}
+              <div className="flex items-center gap-1.5 text-gray-400">
+                <Lock className="w-3.5 h-3.5" />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Secure</span>
+              </div>
+            </div>
+
+            {/* Stats */}
+            <div className="flex flex-wrap justify-center gap-8 lg:gap-16">
+              {stats.map(({ value, label }) => (
+                <div key={value} className="flex flex-col items-center">
+                  <span className="text-lg font-extrabold text-white">{value}</span>
+                  <span className="text-[10px] uppercase tracking-wider text-gray-400 font-medium">{label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* New CTA Button */}
+            <a
+              href="#enquiry"
+              className="bg-white text-black px-6 py-2.5 rounded-full text-[10px] font-black hover:bg-gray-200 transition-all uppercase tracking-tighter"
+            >
+              Search INVOICE FINANCE BROKERS TODAY
+            </a>
+
           </div>
         </div>
       </div>
