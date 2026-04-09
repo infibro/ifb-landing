@@ -32,6 +32,7 @@ export default function Footer() {
               <h4 className="text-white font-semibold mb-2">Platform</h4>
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <Link to="/how-it-works" className="hover:text-white transition-colors">How it works</Link>
+              <Link to="/how-to-get-invoice-finance" className="hover:text-white transition-colors">How to get invoice finance</Link>
               <a href="/#faq" className="hover:text-white transition-colors">FAQ</a>
             </div>
           </div>

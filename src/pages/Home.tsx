@@ -4,6 +4,7 @@ import TypesAndSectors from "../components/TypesAndSectors";
 import FAQ from "../components/FAQ";
 import CTA from "../components/CTA";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
     return (
@@ -22,6 +23,21 @@ export default function Home() {
                         <p className="text-xl text-gray-400 leading-relaxed text-pretty">
                             Invoice finance is a form of business funding that allows companies to raise money against unpaid sales invoices. Instead of waiting for customers to pay, a lender advances most of the invoice value upfront, helping the business maintain cash flow and fund growth.
                         </p>
+                        <div className="mt-6 flex justify-center gap-4 flex-wrap">
+                            <Link
+                                to="/how-it-works"
+                                className="text-sm text-blue-400 hover:text-blue-300 underline underline-offset-4 transition-colors"
+                            >
+                                How does invoice finance work?
+                            </Link>
+                            <span className="text-white/20">|</span>
+                            <Link
+                                to="/how-to-get-invoice-finance"
+                                className="text-sm text-blue-400 hover:text-blue-300 underline underline-offset-4 transition-colors"
+                            >
+                                How to get invoice finance →
+                            </Link>
+                        </div>
                     </motion.div>
                 </div>
             </section>
