@@ -213,7 +213,7 @@ export default function Hero() {
             {/* New CTA Button */}
             <a
               href="#enquiry"
-              className="bg-yellow-400 text-black px-6 py-2.5 rounded-full text-[10px] font-black hover:bg-yellow-500 transition-all uppercase tracking-tighter"
+              className="bg-yellow-400 text-black px-6 py-2.5 rounded-full text-[11px] font-extrabold hover:bg-yellow-500 transition-all shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.5)]"
             >
               Search for Invoice Finance Brokers
             </a>
