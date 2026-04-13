@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from "next/link";
 import { Mail } from 'lucide-react';
 
 export default function Footer() {
@@ -23,16 +23,16 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-center md:text-left text-sm text-gray-400">
             <div className="flex flex-col space-y-3">
               <h4 className="text-white font-semibold mb-2">Legal</h4>
-              <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link to="/terms-and-conditions" className="hover:text-white transition-colors">Terms and Conditions</Link>
-              <Link to="/legal-disclosures" className="hover:text-white transition-colors">Legal Disclosures</Link>
+              <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms and Conditions</Link>
+              <Link href="/legal-disclosures" className="hover:text-white transition-colors">Legal Disclosures</Link>
             </div>
 
             <div className="flex flex-col space-y-3">
               <h4 className="text-white font-semibold mb-2">Platform</h4>
-              <Link to="/" className="hover:text-white transition-colors">Home</Link>
-              <Link to="/how-it-works" className="hover:text-white transition-colors">How it works</Link>
-              <Link to="/how-to-get-invoice-finance" className="hover:text-white transition-colors">How to get invoice finance</Link>
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <Link href="/how-it-works" className="hover:text-white transition-colors">How it works</Link>
+              <Link href="/how-to-get-invoice-finance" className="hover:text-white transition-colors">How to get invoice finance</Link>
               <a href="/#faq" className="hover:text-white transition-colors">FAQ</a>
             </div>
           </div>

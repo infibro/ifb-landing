@@ -1,10 +1,11 @@
-import Hero from "../components/Hero";
-import HowItWorks from "../components/HowItWorks";
-import TypesAndSectors from "../components/TypesAndSectors";
-import FAQ from "../components/FAQ";
-import CTA from "../components/CTA";
+"use client";
+import Hero from "../src/components/Hero";
+import HowItWorks from "../src/components/HowItWorks";
+import TypesAndSectors from "../src/components/TypesAndSectors";
+import FAQ from "../src/components/FAQ";
+import CTA from "../src/components/CTA";
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export default function Home() {
     return (
@@ -25,14 +26,14 @@ export default function Home() {
                         </p>
                         <div className="mt-6 flex justify-center gap-4 flex-wrap">
                             <Link
-                                to="/how-it-works"
+                                href="/how-it-works"
                                 className="text-sm text-blue-400 hover:text-blue-300 underline underline-offset-4 transition-colors"
                             >
                                 How does invoice finance work?
                             </Link>
                             <span className="text-white/20">|</span>
                             <Link
-                                to="/how-to-get-invoice-finance"
+                                href="/how-to-get-invoice-finance"
                                 className="text-sm text-blue-400 hover:text-blue-300 underline underline-offset-4 transition-colors"
                             >
                                 How to get invoice finance →
