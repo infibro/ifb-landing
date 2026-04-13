@@ -35,7 +35,7 @@ export default function CTA() {
     try {
       const formattedNum = number.padStart(8, '0');
       // Read key from environment variable, falling back to original key for safety
-      const apiKey = import.meta.env.VITE_COMPANIES_HOUSE_KEY || '1a1e424d-aac7-4c5f-96f5-1c258f0bbaf1';
+      const apiKey = process.env.NEXT_PUBLIC_COMPANIES_HOUSE_KEY || process.env.VITE_COMPANIES_HOUSE_KEY || '1a1e424d-aac7-4c5f-96f5-1c258f0bbaf1';
       const authHeader = 'Basic ' + window.btoa(apiKey + ':');
 
       const res = await fetch(`/api/companies-house/company/${formattedNum}`, {
