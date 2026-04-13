@@ -169,6 +169,49 @@ export default function HowToGetInvoiceFinanceUK() {
           </section>
 
           <section>
+            <h2 className="border-b border-white/10 pb-2 mb-6">What Lenders Look for (UK Reality)</h2>
+            <p className="mb-4 text-gray-300">Most lenders won’t say this publicly, but approval typically comes down to:</p>
+            <ul className="list-disc pl-6 space-y-1 mb-8 text-gray-300">
+              <li>Your customer’s credit strength (not yours)</li>
+              <li>Invoice size (usually £500+ per invoice)</li>
+              <li>Industry risk (construction is common, hospitality is harder)</li>
+              <li>Payment history consistency</li>
+            </ul>
+            
+            <h3 className="text-xl font-bold text-white mb-3">Common reasons applications are rejected</h3>
+            <ul className="list-disc pl-6 space-y-1 mb-6 text-gray-400">
+              <li>Customers with poor credit ratings</li>
+              <li>Disputed invoices</li>
+              <li>Too many small invoices</li>
+              <li>B2C (consumer) businesses</li>
+            </ul>
+            <p className="text-blue-400 bg-blue-900/10 p-4 rounded-lg inline-block">
+              👉 If your customers are strong, approval rates are high — even if your business is new.
+            </p>
+          </section>
+
+          <section className="bg-white/5 border border-white/10 rounded-xl p-8 my-10">
+            <h2 className="text-2xl font-bold text-white mb-4">Example: Construction Business Using Invoice Finance</h2>
+            <p className="mb-6 text-gray-300">A UK subcontractor invoices £50,000 monthly on 60-day terms.</p>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="font-medium text-white mb-3">Instead of waiting:</h3>
+                <ul className="list-disc pl-5 text-gray-400 space-y-2">
+                  <li>Receives ~£40,000 within 48 hours</li>
+                  <li>Uses cash to pay staff and take on new jobs</li>
+                </ul>
+              </div>
+              <div className="bg-green-900/10 border border-green-500/20 p-5 rounded-lg">
+                <h3 className="font-medium text-white mb-3">Result:</h3>
+                <ul className="list-disc pl-5 text-green-400 space-y-2 font-medium">
+                  <li>Faster growth</li>
+                  <li>No cashflow gaps</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section>
             <h2 className="border-b border-white/10 pb-2 mb-6">Why Use an Invoice Finance Broker?</h2>
             <p className="mb-6 text-gray-300">Going direct to one lender limits your options. Using a broker gives you:</p>
             
@@ -235,6 +278,25 @@ export default function HowToGetInvoiceFinanceUK() {
               <li>Customer strength</li>
               <li>Documentation readiness</li>
             </ul>
+          </section>
+
+          <section>
+            <h2 className="border-b border-white/10 pb-2 mb-6">How Much Does Invoice Finance Cost in the UK?</h2>
+            <p className="mb-4 text-gray-300">Typical costs include:</p>
+            <ul className="list-disc pl-6 space-y-2 mb-8 text-gray-300">
+              <li><strong className="text-white">Service fee:</strong> 0.5% – 3% of invoice value</li>
+              <li><strong className="text-white">Discount rate:</strong> 1.5% – 5% above base rate</li>
+            </ul>
+            
+            <p className="mb-3 text-gray-300">Costs depend on:</p>
+            <ul className="list-disc pl-6 space-y-1 mb-6 text-gray-400">
+              <li>Volume</li>
+              <li>Risk</li>
+              <li>Industry</li>
+              <li>Customer quality</li>
+            </ul>
+            
+            <p className="text-blue-400 font-medium bg-blue-900/10 p-4 rounded-lg inline-block">👉 Strong debtors = lower rates</p>
           </section>
 
           <section>
