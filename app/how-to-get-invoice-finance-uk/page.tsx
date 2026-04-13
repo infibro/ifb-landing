@@ -257,7 +257,7 @@ export default function HowToGetInvoiceFinanceUK() {
 
           <section className="bg-gradient-to-br from-blue-900/40 to-black border border-blue-500/30 rounded-2xl p-8 text-center mt-12">
             <h2 className="text-3xl font-bold text-white mb-4">Get Matched with the Right Invoice Finance Provider</h2>
-            <p className="text-gray-300 mb-8">We connect UK businesses with independent invoice finance brokers and lenders.</p>
+            <p className="text-gray-300 mb-8">We connect UK businesses with independent <Link href="/" className="text-blue-400 hover:text-blue-300 underline">invoice finance brokers and lenders</Link>. See <Link href="/how-it-works" className="text-blue-400 hover:text-blue-300 underline">how it works</Link> to learn more.</p>
             
             <div className="inline-flex flex-col text-left gap-3 mb-8 mx-auto">
               <span className="flex items-center gap-2 text-white"><span className="text-blue-500">👉</span> Compare options</span>
