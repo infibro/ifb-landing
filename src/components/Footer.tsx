@@ -33,6 +33,7 @@ export default function Footer() {
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
               <Link href="/how-it-works" className="hover:text-white transition-colors">How it works</Link>
               <Link href="/how-to-get-invoice-finance-uk" className="hover:text-white transition-colors">How to get invoice finance</Link>
+              <Link href="/invoice-finance-brokers-uk" className="hover:text-white transition-colors">Invoice Finance Brokers</Link>
               <a href="/#faq" className="hover:text-white transition-colors">FAQ</a>
             </div>
           </div>
