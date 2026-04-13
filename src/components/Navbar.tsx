@@ -8,6 +8,7 @@ export default function Navbar() {
           <Link href="/" className="text-white font-bold text-2xl tracking-tighter">IFB</Link>
           <div className="flex items-center gap-6">
             <Link href="/how-it-works" className="text-gray-300 hover:text-white text-sm font-medium transition-colors">How it works</Link>
+            <Link href="/how-to-get-invoice-finance-uk" className="text-gray-300 hover:text-white text-sm font-medium transition-colors">How to get invoice finance</Link>
           </div>
         </div>
       </div>
