@@ -84,7 +84,8 @@ export default function HowToGetInvoiceFinance() {
 
                     {/* Intro */}
                     <section>
-                        <h2 className="text-2xl font-semibold text-white mb-4">What Is Invoice Finance?</h2>
+                        <h2 className="text-3xl font-semibold text-white mb-4">Understanding How to Get Invoice Finance</h2>
+                        <h3 className="text-xl font-medium text-gray-300 mb-2">Step 1: What Is Required to Get Invoice Finance?</h3>
                         <p>
                             Invoice finance lets UK businesses unlock cash from unpaid invoices rather than waiting 30–90 days for customers
                             to pay. A lender advances up to 90% of each invoice's value immediately, with the remainder (minus fees) paid
@@ -104,7 +105,8 @@ export default function HowToGetInvoiceFinance() {
 
                     {/* Eligibility */}
                     <section>
-                        <h2 className="text-2xl font-semibold text-white mb-4">Do You Qualify? Key Eligibility Criteria</h2>
+                        <h2 className="text-3xl font-semibold text-white mb-4">Eligibility: How to Get Invoice Finance Approved</h2>
+                        <h3 className="text-xl font-medium text-gray-300 mb-4">Are you qualified to get invoice finance in the UK?</h3>
                         <p className="mb-4">Most UK lenders look for the following before approving a facility:</p>
                         <div className="grid md:grid-cols-2 gap-4">
                             {[
@@ -118,7 +120,7 @@ export default function HowToGetInvoiceFinance() {
                                 <div key={title} className="flex gap-3 bg-white/5 p-4 rounded-xl border border-white/5">
                                     <span className="text-2xl">{icon}</span>
                                     <div>
-                                        <h3 className="text-white font-bold text-sm mb-1">{title}</h3>
+                                        <h4 className="text-white font-bold text-sm mb-1">{title}</h4>
                                         <p className="text-gray-400 text-sm">{desc}</p>
                                     </div>
                                 </div>
@@ -128,7 +130,8 @@ export default function HowToGetInvoiceFinance() {
 
                     {/* Documents */}
                     <section>
-                        <h2 className="text-2xl font-semibold text-white mb-4">Documents You'll Typically Need</h2>
+                        <h2 className="text-3xl font-semibold text-white mb-4">Paperwork: How to Get Invoice Finance Started</h2>
+                        <h3 className="text-xl font-medium text-gray-300 mb-4">Documents You'll Typically Need</h3>
                         <p className="mb-4">Gathering the right paperwork before applying speeds up the process significantly:</p>
                         <ul className="list-disc pl-6 text-gray-300 space-y-2">
                             <li><strong className="text-white">Aged debtor report</strong> — a list of all outstanding invoices with amounts and due dates</li>
@@ -142,7 +145,8 @@ export default function HowToGetInvoiceFinance() {
 
                     {/* Step-by-step */}
                     <section>
-                        <h2 className="text-2xl font-semibold text-white mb-6">How to Apply for Invoice Finance: Step by Step</h2>
+                        <h2 className="text-3xl font-semibold text-white mb-6">The Process: How to Apply and Get Invoice Finance</h2>
+                        <h3 className="text-xl font-medium text-gray-300 mb-6">Your Step-by-Step Pathway to Get Invoice Finance</h3>
                         <div className="space-y-6">
                             {[
                                 {
@@ -181,7 +185,7 @@ export default function HowToGetInvoiceFinance() {
                                         {step}
                                     </div>
                                     <div>
-                                        <h3 className="text-lg font-bold text-white">{title}</h3>
+                                        <h4 className="text-lg font-bold text-white">{title}</h4>
                                         <p className="text-gray-400">{body}</p>
                                     </div>
                                 </div>
@@ -191,7 +195,7 @@ export default function HowToGetInvoiceFinance() {
 
                     {/* Timeline */}
                     <section>
-                        <h2 className="text-2xl font-semibold text-white mb-4">How Long Does It Take?</h2>
+                        <h2 className="text-3xl font-semibold text-white mb-4">Timeline: How Long Does It Take to Get Invoice Finance?</h2>
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm text-left border border-white/10 rounded-xl overflow-hidden">
                                 <thead className="bg-white/10 text-white">
@@ -220,7 +224,8 @@ export default function HowToGetInvoiceFinance() {
 
                     {/* Bad credit */}
                     <section>
-                        <h2 className="text-2xl font-semibold text-white mb-4">Can I Get Invoice Finance With Bad Credit?</h2>
+                        <h2 className="text-3xl font-semibold text-white mb-4">Challenges: How to Get Invoice Finance With Bad Credit</h2>
+                        <h3 className="text-xl font-medium text-gray-300 mb-3">Can I Get Invoice Finance If My Business Credit Is Poor?</h3>
                         <p className="mb-3">
                             Yes — often you can. Unlike bank loans, invoice finance approval is driven primarily by your <em>customers'</em> creditworthiness,
                             not your own. Lenders want to know your customers will pay; if they will, your own imperfect credit history
@@ -234,7 +239,7 @@ export default function HowToGetInvoiceFinance() {
 
                     {/* FAQ */}
                     <section>
-                        <h2 className="text-2xl font-semibold text-white mb-4">Common Questions</h2>
+                        <h2 className="text-3xl font-semibold text-white mb-4">Common Questions on How to Get Invoice Finance</h2>
                         <div className="space-y-6">
                             {[
                                 {
@@ -255,7 +260,7 @@ export default function HowToGetInvoiceFinance() {
                                 },
                             ].map(({ q, a }) => (
                                 <div key={q}>
-                                    <h3 className="text-lg font-bold text-white">{q}</h3>
+                                    <h4 className="text-lg font-bold text-white">{q}</h4>
                                     <p className="text-gray-400 mt-1">{a}</p>
                                 </div>
                             ))}
@@ -264,7 +269,8 @@ export default function HowToGetInvoiceFinance() {
 
                     {/* CTA */}
                     <section className="bg-white/5 border border-white/10 rounded-xl p-6 text-center">
-                        <h2 className="text-2xl font-semibold text-white mb-4">Find the Right Invoice Finance Facility Today</h2>
+                        <h2 className="text-3xl font-semibold text-white mb-4">Ready to Get Invoice Finance?</h2>
+                        <h5 className="text-lg font-medium text-gray-200 mb-4">Find the Right Invoice Finance Facility Today</h5>
                         <p className="text-gray-300 mb-6 max-w-lg mx-auto">
                             An independent broker compares the whole market, negotiates rates on your behalf, and matches you to the lender
                             best suited to your sector and turnover — at no cost to you.
