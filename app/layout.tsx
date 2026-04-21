@@ -16,6 +16,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQLQMEFEPN"></script>
+        <script
+          dangerouslySetInnerHTML={{
+             __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-VQLQMEFEPN');
+            `
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-[#050505] text-white font-sans selection:bg-white selection:text-black flex flex-col">
         <Navbar />
         <div className="flex-grow">{children}</div>

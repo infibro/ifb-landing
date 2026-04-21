@@ -188,7 +188,7 @@ export default function CTA() {
 
       if (error) {
         console.error("Supabase insert error:", error);
-        alert("Database connection failed. Please ensure the Supabase credentials are loaded and try again.");
+        alert(`Database error: ${error.message || "Please ensure the Supabase credentials are loaded and try again."}`);
         setIsProcessing(false);
         return;
       }
