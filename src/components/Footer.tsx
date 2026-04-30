@@ -39,6 +39,7 @@ export default function Footer() {
 
             <div className="flex flex-col space-y-3">
               <h4 className="text-white font-semibold mb-2">Guides</h4>
+              <Link href="/invoice-factoring" className="hover:text-white transition-colors">Invoice Factoring</Link>
               <Link href="/invoice-finance-costs-uk" className="hover:text-white transition-colors">Invoice Finance Costs</Link>
               <Link href="/invoice-factoring-vs-discounting" className="hover:text-white transition-colors">Factoring vs Discounting</Link>
             </div>
