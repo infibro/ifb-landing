@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail } from 'lucide-react';
 
 export default function Footer() {
@@ -8,7 +9,9 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
 
           <div className="flex flex-col items-center md:items-start">
-            <span className="text-white font-bold text-xl tracking-tighter mb-4">Invoice Finance Brokers</span>
+            <Link href="/" className="mb-4">
+              <Image src="/logo.svg" alt="Invoice Finance Brokers" width={180} height={28} className="h-8 w-auto opacity-80 hover:opacity-100 transition-opacity" />
+            </Link>
             <p className="text-gray-400 text-sm max-w-sm text-center md:text-left">
               Connecting businesses with independent finance brokers and lenders.
             </p>
