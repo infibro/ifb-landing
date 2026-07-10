@@ -33,7 +33,7 @@ export default function Home() {
                             </Link>
                             <span className="text-white/20">|</span>
                             <Link
-                                href="/how-to-get-invoice-finance"
+                                href="/how-to-get-invoice-finance-uk"
                                 className="text-sm text-blue-400 hover:text-blue-300 underline underline-offset-4 transition-colors"
                             >
                                 How to get invoice finance →
