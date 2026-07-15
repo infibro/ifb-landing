@@ -117,7 +117,7 @@ export default function BestBusinessLoansPage() {
 
           {/* EEAT Author / Reviewer Info */}
           <div className="mt-6 flex flex-wrap items-center gap-4 py-4 border-y border-white/5 text-xs text-gray-400 justify-center md:justify-start">
-            <span className="flex items-center gap-1.5"><UserCheck className="w-4 h-4 text-blue-400" /> Written by: <strong className="text-white">Richard Croft</strong> (Senior Commercial Finance Specialist)</span>
+            <span className="flex items-center gap-1.5"><UserCheck className="w-4 h-4 text-blue-400" /> Written by: <strong className="text-white">Editorial Finance Team</strong> (Commercial Finance Specialists)</span>
             <span className="hidden sm:inline text-white/10">|</span>
             <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-emerald-400" /> Fact-Checked & Reviewed by: <strong className="text-white">Independent Brokerage Committee</strong></span>
             <span className="hidden sm:inline text-white/10">|</span>
@@ -235,7 +235,7 @@ export default function BestBusinessLoansPage() {
                 <p className="italic text-gray-300 text-sm leading-relaxed">
                   &ldquo;Many business owners apply for unsecured loans because they believe it protects their assets. They fail to read the fine print of the Personal Guarantee. In reality, an unsecured loan with a strict PG carries personal risk, while asset finance or invoice finance secures the debt against the business asset itself, shielding personal wealth.&rdquo;
                 </p>
-                <span className="block text-xs text-gray-400 mt-2">— Richard Croft, Senior Finance Broker</span>
+                <span className="block text-xs text-gray-400 mt-2">— Senior Finance Specialist, Editorial Review Board</span>
               </div>
             </section>
 
