@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/best-business-loans`,
+      url: `${baseUrl}/best-business-loans-uk`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,

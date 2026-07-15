@@ -36,7 +36,14 @@ export default function Home() {
                                 href="/how-to-get-invoice-finance-uk"
                                 className="text-sm text-blue-400 hover:text-blue-300 underline underline-offset-4 transition-colors"
                             >
-                                How to get invoice finance →
+                                How to get invoice finance
+                            </Link>
+                            <span className="text-white/20">|</span>
+                            <Link
+                                href="/best-business-loans-uk"
+                                className="text-sm text-blue-400 hover:text-blue-300 underline underline-offset-4 transition-colors"
+                            >
+                                Compare Business Loans UK →
                             </Link>
                         </div>
                     </motion.div>

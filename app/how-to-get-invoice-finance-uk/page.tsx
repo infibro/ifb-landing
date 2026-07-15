@@ -304,7 +304,7 @@ export default function HowToGetInvoiceFinanceUK() {
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-bold text-white">Is invoice finance a loan?</h3>
-                <p className="text-gray-400">No — it’s funding secured against your invoices.</p>
+                <p className="text-gray-400">No — it’s funding secured against your invoices. If you want to compare traditional business loans with invoice finance in detail, read our comprehensive guide to the <Link href="/best-business-loans-uk" className="text-blue-400 hover:text-blue-300 underline">best business loans in the UK</Link>.</p>
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white">Do customers know?</h3>
