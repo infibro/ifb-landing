@@ -17,6 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8585310452285544"
+          crossOrigin="anonymous"></script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQLQMEFEPN"></script>
         <script
           dangerouslySetInnerHTML={{
