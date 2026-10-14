@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import FAQAccordion from '../../src/components/FAQAccordion';
 import InteractiveFinder from '../../src/components/InteractiveFinder';
-import { ShieldCheck, HelpCircle, AlertCircle, TrendingUp, Clock, Scale, Award, Info, FileText, CheckCircle2, UserCheck } from 'lucide-react';
+import { ShieldCheck, HelpCircle, AlertCircle, TrendingUp, Clock, Scale, Award, Info, FileText, CheckCircle2 } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Best Business Loans UK (2026): Compare Funding Options',
@@ -92,7 +92,7 @@ export default function BestBusinessLoansPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "FinancialProduct",
-        "name": "Commercial Business Finance Advisory",
+        "name": "Commercial Business Finance Guide",
         "description": "Independent brokerage services matching UK enterprises with optimal business loans, invoice finance, asset finance, and cash flow solutions.",
         "provider": {
           "@type": "Organization",
@@ -106,7 +106,7 @@ export default function BestBusinessLoansPage() {
         {/* Header Block */}
         <header className="mb-12 text-center md:text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">
-            <Award className="w-3.5 h-3.5" /> Topical Authority Report
+            <Award className="w-3.5 h-3.5" /> Business Finance Guide
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-5xl">
             Best Business Loans UK (2026): <span className="text-gray-400 block sm:inline">The Ultimate Comparative Guide to Corporate Finance</span>
@@ -115,13 +115,11 @@ export default function BestBusinessLoansPage() {
             An independent, educational guide helping UK business owners navigate commercial funding, alternative finance, and interest rates before making an enquiry.
           </p>
 
-          {/* EEAT Author / Reviewer Info */}
+          {/* Guide Metadata */}
           <div className="mt-6 flex flex-wrap items-center gap-4 py-4 border-y border-white/5 text-xs text-gray-400 justify-center md:justify-start">
-            <span className="flex items-center gap-1.5"><UserCheck className="w-4 h-4 text-blue-400" /> Written by: <strong className="text-white">Editorial Finance Team</strong> (Commercial Finance Specialists)</span>
+            <span>Last Updated: <strong className="text-white">July 2026</strong></span>
             <span className="hidden sm:inline text-white/10">|</span>
-            <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-emerald-400" /> Fact-Checked & Reviewed by: <strong className="text-white">Independent Brokerage Committee</strong></span>
-            <span className="hidden sm:inline text-white/10">|</span>
-            <span>Published: <strong className="text-white">July 2026</strong></span>
+            <span>Educational & Information Guide</span>
           </div>
         </header>
 
@@ -167,9 +165,9 @@ export default function BestBusinessLoansPage() {
               <div className="bg-blue-900/10 border border-blue-500/20 p-5 rounded-2xl flex items-start gap-4">
                 <Info className="w-6 h-6 text-blue-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <span className="block text-sm font-bold text-white mb-1">Independent Educational Policy</span>
+                  <span className="block text-sm font-bold text-white mb-1">Informational Guide Notice</span>
                   <span className="block text-xs text-gray-400 leading-relaxed">
-                    Invoice Finance Brokers is an independent advisory resource. We do not lend money directly, nor are we tied to any single financial institution. Our goal is to educate business owners so they can confidently self-select the correct funding structure. If you choose to enquire, we connect you with regulated independent brokers who negotiate market-wide terms on your behalf.
+                    Invoice Finance Brokers is an informational resource. We do not lend money directly, nor are we tied to any single financial institution. Our goal is to provide general information to help business owners understand funding structures. If you choose to enquire, we connect you with independent finance brokers who can assist your business.
                   </span>
                 </div>
               </div>
@@ -229,13 +227,12 @@ export default function BestBusinessLoansPage() {
                 <li><strong className="text-white">Mentoring:</strong> Includes 12 months of free post-loan business mentoring to improve survival rates.</li>
               </ul>
 
-              {/* Expert Quote Callout */}
+              {/* Callout */}
               <div className="border-l-4 border-blue-500 bg-white/5 p-5 rounded-r-2xl my-6">
-                <span className="block text-xs uppercase tracking-wider text-blue-400 font-bold mb-2">Expert Broker Insight</span>
+                <span className="block text-xs uppercase tracking-wider text-blue-400 font-bold mb-2">Commercial Finance Insight</span>
                 <p className="italic text-gray-300 text-sm leading-relaxed">
                   &ldquo;Many business owners apply for unsecured loans because they believe it protects their assets. They fail to read the fine print of the Personal Guarantee. In reality, an unsecured loan with a strict PG carries personal risk, while asset finance or invoice finance secures the debt against the business asset itself, shielding personal wealth.&rdquo;
                 </p>
-                <span className="block text-xs text-gray-400 mt-2">— Senior Finance Specialist, Editorial Review Board</span>
               </div>
             </section>
 
