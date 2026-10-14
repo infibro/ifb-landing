@@ -4,7 +4,6 @@ import { CheckCircle2, Lock, Star, ArrowRight } from "lucide-react";
 
 const bullets = [
   "Apply in minutes with a simple online form",
-  "Fast decision – typically within 24 hours",
   "Access funds against your outstanding invoices",
 ];
 
@@ -17,7 +16,6 @@ const sectors = [
 ];
 
 const stats = [
-  { value: "24 hrs",    label: "to get a decision" },
   { value: "Up to 90%", label: "of invoice value released" },
   { value: "No fees",   label: "for early repayment" },
 ];
@@ -89,8 +87,7 @@ export default function Hero() {
               className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-white mb-5"
             >
               Check if you qualify for{" "}
-              <span className="text-[#00AEEF]">invoice finance</span>{" "}
-              in minutes
+              <span className="text-[#00AEEF]">invoice finance</span>
             </m.h1>
 
             <m.p
